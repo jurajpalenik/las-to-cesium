@@ -1,6 +1,6 @@
 import numpy as np
 
-#
+# https://github.com/CesiumGS/cesium/blob/1.83/Source/Core/Cartesian3.js#L884
 # /**
 #  * Returns a Cartesian3 position from longitude and latitude values given in radians.
 #  *
