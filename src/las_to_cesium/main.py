@@ -306,13 +306,13 @@ def make_les_using_cesium_subtract_first(df):
     of.write('data.las')
 
 
-def make_les_using_ecef(df):
+def make_les_using_ecef(df, filename='data.las'):
 
     print('############################################')
     print()
     print('Creating empty file...')
     print()
-    of = laspy.create(file_version="1.4", point_format=6)
+    of = laspy.create(file_version="1.4", point_format=7)
 
     of.header.global_encoding.wkt = True
     print('Global encoding:', of.header.global_encoding.value)
@@ -360,7 +360,14 @@ def make_les_using_ecef(df):
     of.y = pos[1, :] 
     of.z = pos[2, :] 
 
-    of.write('data.las')
+    if hasattr(df, 'red'):
+        of.red = df.red
+    if hasattr(df, 'green'):
+        of.green = df.green
+    if hasattr(df, 'blue'):
+        of.blue = df.blue
+
+    of.write(filename)
 
 
 def ecef_wkt_string():
